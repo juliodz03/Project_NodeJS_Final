@@ -5,6 +5,8 @@ import cors from 'cors';
 import connectDB from './config/database.js';
 import errorHandler from './middleware/errorHandler.js';
 
+import productRoutes from './routes/products.js';
+import userRoutes from './routes/users.js';
 // Initialize express
 const app = express();
 const httpServer = createServer(app);
@@ -26,6 +28,8 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
 
 // Health check
 app.get('/health', (req, res) => {
